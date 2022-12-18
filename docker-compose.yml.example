@@ -1,15 +1,17 @@
 x-SManager:
   properties:
     - "Port: ${EXT_PORT}"
-    - "Вы должны загрузить файл pak0.pk3 из оригинальной игры"
+    - "You must upload pak0.pk3 from original game"
   ui_edit_vars:
     Port: EXT_PORT
-    
-quake3:
+
+version: '2'
+services:
+  quake3:
     image: inanimate/quake3
     restart: always
     ports:
-        - "${EXT_PORT}:27960/udp"
+      - "${EXT_PORT}:27960/udp"
     volumes:
-        - ./pak0.pk3:/usr/share/games/quake3/baseq3/pak0.pk3
-        - ./server.cfg.example:/usr/share/games/quake3/baseq3/server.cfg
+      - ./pak0.pk3:/usr/share/games/quake3/baseq3/pak0.pk3
+      - ./server.cfg:/usr/share/games/quake3/baseq3/server.cfg
